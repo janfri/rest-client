@@ -43,31 +43,33 @@ require File.dirname(__FILE__) + '/request_errors'
 #   => "PUT http://rest-test.heroku.com/resource with a 7 byte payload, content type application/x-www-form-urlencoded {\"foo\"=>\"baz\"}"
 #
 module RestClient
-	def self.get(url, headers={})
+	def get(url, headers={})
 		Request.execute(:method => :get,
 			:url => url,
 			:headers => headers)
 	end
 
-	def self.post(url, payload, headers={})
+	def post(url, payload, headers={})
 		Request.execute(:method => :post,
 			:url => url,
 			:payload => payload,
 			:headers => headers)
 	end
 
-	def self.put(url, payload, headers={})
+	def put(url, payload, headers={})
 		Request.execute(:method => :put,
 			:url => url,
 			:payload => payload,
 			:headers => headers)
 	end
 
-	def self.delete(url, headers={})
+	def delete(url, headers={})
 		Request.execute(:method => :delete,
 			:url => url,
 			:headers => headers)
 	end
+
+        module_function :get, :post, :put, :delete
 
 	class <<self
 		attr_accessor :proxy
